@@ -1,7 +1,10 @@
-// console.log("Hello, Vue.js!");
+// dynamic rendering
 const app = Vue.createApp({
-    // root component: here data and/or function can be defined
-    template: '<h2>I am a template</h2>'
+    data() {
+        return {
+            title: 'The Final Empire'
+        }
+    }
 });
 
 app.mount("#app")
