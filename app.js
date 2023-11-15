@@ -2,9 +2,15 @@
 const app = Vue.createApp({
     data() {
         return {
-            title: 'The Final Empire',
-            author: 'Brandon Sanderson',
+            showBook: true,
+            books: [
+                {title: 'Open Heaven', author: 'Pastor E.A. Adeboye'},
+                {title: 'The Potency of Historical Event', author: 'Sunday P. Afolabi'},
+                {title: 'The Core of David', author: 'Sunday P. Afolabi'},
+            ],
             age: 31,
+            posX: 0,
+            posY: 0,
         }
     },
     methods: {
@@ -13,6 +19,19 @@ const app = Vue.createApp({
         },
         addOne() {
             this.age++;
+        },
+        toggleShowBook() {
+            this.showBook = !this.showBook
+        },
+        handleEvent(e, data) {
+            console.log(e, e.type);
+            if (data) {
+                console.log("Data: ", data);
+            }
+        },
+        handleMouseMove(e) {
+            this.posX = e.offsetX;
+            this.posY = e.offsetY;
         }
     }
 });
