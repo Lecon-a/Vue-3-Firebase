@@ -6,6 +6,9 @@
     <script src="https://unpkg.com/vue@3.0.2"></script>
     <title>Learning Vue</title>
     <style>
+        body {
+            background-color: #eee;
+        }
         .box {
             padding: 100px 0;
             width: 400px;
@@ -14,18 +17,84 @@
             margin: 20px;
             display: inline-block;
         }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            flex-direction: row;
+            height: 120px;
+            width: 70%;
+            list-style-type: none;
+            border-radius: 5px;
+            margin: 23px auto;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 0 2rem 0 0;
+            color: #333;
+            cursor: pointer;
+            position: relative;
+        }
+
+        li > * {
+            flex: 1;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        li.fav {
+            background-color: #ff9ed2;
+            color: #fff;
+        }
+
+        img {
+            width: auto;
+            height: 100%;
+        }
+
+        .li-item {
+            height: 100%;
+            padding: 3rem 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .badge {
+            width: fit-content;
+            height: fit-content;
+            padding: .5rem;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background-color: #eee;
+            color: #ff9ed2;
+            border-radius: 2rem;
+        }
+
+        .title {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1>Hello, Vue.js!</h1>
     <div id="app">
         <div v-show="showBook">
+
+            <!-- attribute binding -->
+            <a v-bind:href="url">spog info</a>
             
             <ul>
-                <h2>Book Title</h2>
-                <li v-for="book in books">
-                    <h3>{{ book.title }}</h3>
-                    <p>{{ book.author }}</p>
+                <h2 class="title">Book Listing</h2>
+                <li v-for="(book, index) in books" :class="{ fav: book.isFav }" @click="toggleIsFavourite(index)">
+                    <img :src="book.book_cover" :alt="book.title">
+                    <span v-show="book.isFav" class="badge">Favourite</span>
+                    <h3 class="li-item">{{ book.title }}</h3>
+                    <p class="li-item">{{ book.author }}</p>
                 </li>
             </ul>
         
