@@ -7,7 +7,7 @@ const app = Vue.createApp({
             books: [
                 {title: 'Open Heaven', author: 'Pastor E.A. Adeboye', book_cover: "assets/book1.jpg", isFav: false},
                 {title: 'The Potency of Historical Event', author: 'Sunday P. Afolabi', book_cover: "assets/book1.jpg", isFav: true},
-                {title: 'The Core of David', author: 'Sunday P. Afolabi', book_cover: "assets/book1.jpg", isFav: false},
+                {title: 'The Core of David', author: 'Sunday P. Afolabi', book_cover: "assets/book1.jpg", isFav: true},
             ],
             age: 31,
             posX: 0,
@@ -36,6 +36,11 @@ const app = Vue.createApp({
         toggleIsFavourite(book) {
             //alert("Click")
             book.isFav = !book.isFav
+        }
+    },
+    computed: {
+        filteredBooks() {
+            return this.books.filter((book) => book.isFav)
         }
     }
 });
